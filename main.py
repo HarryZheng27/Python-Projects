@@ -6,10 +6,30 @@ targetproducts = ["N2O5","N2O5"]
 endingreactants = targetreactants
 endingproducts = targetproducts
 
-reaction1 = [["A"],["B","B"],57.9]
-reaction2 = [["C","C","D"],["B","B"],-113.1]
+reactions = []
 
-reactions = [
+def processreactioninput(reaction):
+  reactionlist = reaction.split("=")
+  reactants = reactionlist[0]
+  products = reactionlist[1]
+  for i in range(len(reactants)):
+    try: 
+      coefficient = int(reactants[i].split()[0])
+      try:
+        coefficient = coefficient*10+int(reactants[i].split()[1])
+      except:
+        pass
+      
+    except:
+      pass
+
+
+for i in range(int(input("How many reactions: "))):
+  reactions.append([])
+
+print(reactions)
+exit()
+reactionsbackup = [
 [["H2","H2","O2"],["H2O","H2O"],20000],
 [["N2O5","H2O"],["HNO3","HNO3"],100],
 [["N2","O2","O2","O2","H2"],["HNO3","HNO3"],1]
