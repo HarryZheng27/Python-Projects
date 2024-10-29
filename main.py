@@ -1,7 +1,10 @@
 reactions = []
 
 def processreactioninput(reaction):
-  reactionlist = reaction.split("=")
+  try:
+    reactionlist = reaction.split(":")[0].split("=")
+  except:
+    reactionlist = reaction.split("=")
   
   reactants = reactionlist[0].split("+")
   print(reactants)
