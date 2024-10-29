@@ -42,6 +42,7 @@ def processreactioninput(reaction):
     output.append([])
     for j in range(coefficient):
       output[1].append(products[i])
+  output[2] = reaction.split(":")[1]
   print("output--------------------------")
   print(output)
   return output
