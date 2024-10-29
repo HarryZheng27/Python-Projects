@@ -1,7 +1,7 @@
 #2 reactions
 
-targetreactants = ["C","C","D"]
-targetproducts = ["A"]
+targetreactants = ["N2","N2","O2","O2","O2","O2","O2"]
+targetproducts = ["N2O5","N2O5"]
 
 endingreactants = targetreactants
 endingproducts = targetproducts
@@ -10,8 +10,9 @@ reaction1 = [["A"],["B","B"],57.9]
 reaction2 = [["C","C","D"],["B","B"],-113.1]
 
 reactions = [
-[["A"],["B","B"],57.9],
-[["C","C","D"],["B","B"],-113.1]
+[["H2","H2","O2"],["H2O","H2O"],20000],
+[["N2O5","H2O"],["HNO3","HNO3"],100],
+[["N2","O2","O2","O2","H2"],["HNO3","HNO3"],1]
 ]
 
 totalenthalpy =0
@@ -30,16 +31,16 @@ for l in range(50):
     x=x[0]
   except:
     break
-  reactionsused = [False,False]
+  reactionsused = [False,False,False,False,False]
   for reaction in range(len(reactions)):
-    
+    print(reaction)
     try:
       for j in range(len(reactions[reaction][0])):
-        print(reactions[reaction][0][j])
+        
         if reactions[reaction][0][j] == endingreactants[i]:
           k=0
           totalenthalpy += reactions[reaction][2]
-          reaction1used = True
+          reactionsused[reaction] = True
           for k in range(len(reactions[reaction][0])):
             try:
               endingreactants.remove(reactions[reaction][0][k])
