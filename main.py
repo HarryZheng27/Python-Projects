@@ -61,11 +61,6 @@ targetproducts = targetreaction[1]
 endingreactants = targetreactants
 endingproducts = targetproducts
 
-reactionsbackup = [
-[["H2","H2","O2"],["H2O","H2O"],20000],
-[["N2O5","H2O"],["HNO3","HNO3"],100],
-[["N2","O2","O2","O2","H2"],["HNO3","HNO3"],1]
-]
 
 totalenthalpy =0
 
