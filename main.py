@@ -71,7 +71,7 @@ totalenthalpy =0
 
 reactionamount = 2
 i=0
-for l in range(50):
+for l in range(500):
   j=0
   if i>=len(targetreactants):
     i = 0
