@@ -1,11 +1,3 @@
-#2 reactions
-
-targetreactants = ["N2","N2","O2","O2","O2","O2","O2"]
-targetproducts = ["N2O5","N2O5"]
-
-endingreactants = targetreactants
-endingproducts = targetproducts
-
 reactions = []
 
 def processreactioninput(reaction):
@@ -42,7 +34,10 @@ def processreactioninput(reaction):
     output.append([])
     for j in range(coefficient):
       output[1].append(products[i])
-  output[2] = reaction.split(":")[1]
+  try:
+    output[2] = int(reaction.split(":")[1])
+  except:
+    pass
   print("output--------------------------")
   print(output)
   return output
@@ -53,7 +48,13 @@ for i in range(int(input("How many reactions: "))):
   reactions[i].append(processreactioninput(input("Input reaction " + str(i+1) + ":")))
 
 print(reactions)
-exit()
+targetreaction = processreactioninput(input("Target Reaction: "))
+targetreactants = targetreaction[0]
+targetproducts = targetreaction[1]
+
+endingreactants = targetreactants
+endingproducts = targetproducts
+
 reactionsbackup = [
 [["H2","H2","O2"],["H2O","H2O"],20000],
 [["N2O5","H2O"],["HNO3","HNO3"],100],
