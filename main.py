@@ -10,39 +10,46 @@ reactions = []
 
 def processreactioninput(reaction):
   reactionlist = reaction.split("=")
-  reactants = reactionlist[0]
-  products = reactionlist[1]
+  
+  reactants = reactionlist[0].split("+")
+  print(reactants)
+  products = reactionlist[1].split("+")
+  print(products)
   output = []
   for i in range(len(reactants)):
     try: 
-      coefficient = int(reactants[i].split()[0])
+      coefficient = int(list(reactants[i])[0])
       try:
-        coefficient = coefficient*10+int(reactants[i].split()[1])
+        coefficient = coefficient*10+int(list(reactants[i])[1])
       except:
-        pass
-      reactants[i].remove(str(coefficient))
-      output.append([])
-      for j in range(len(coefficient)):
-        output[0].append(reactants[i])
+        coefficient = int(list(reactants[i])[0])
+      reactants[i] = reactants[i].removeprefix(str(coefficient))
     except:
-      pass
+      coefficient = 1
+    output.append([])
+    for j in range(coefficient):
+      output[0].append(reactants[i])
   for i in range(len(products)):
     try: 
-      coefficient = int(products[i].split()[0])
+      coefficient = int(list(products[i])[0])
       try:
-        coefficient = coefficient*10+int(products[i].split()[1])
+        coefficient = coefficient*10+int(list(products[i])[1])
       except:
         pass
-      products[i].remove(str(coefficient))
-      output.append([])
-      for j in range(len(coefficient)):
-        output[0].append(products[i])
+      products[i]=products[i].removeprefix(str(coefficient))
     except:
-      pass
+      coefficient = 1
+    output.append([])
+    for j in range(coefficient):
+      output[1].append(products[i])
+  print("output--------------------------")
+  print(output)
+  return output
 
 
 for i in range(int(input("How many reactions: "))):
   reactions.append([])
+  reactions[i].append(processreactioninput(input("Input reaction " + str(i+1) + ":")))
 
 print(reactions)
 exit()
