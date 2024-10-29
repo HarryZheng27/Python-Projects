@@ -2,14 +2,14 @@ reactions = []
 
 def processreactioninput(reaction):
   try:
-    reactionlist = reaction.split(":")[0].split("=")
+    reactionlist = str(reaction.split(":")[0]).split("=")
   except:
     reactionlist = reaction.split("=")
   
   reactants = reactionlist[0].split("+")
-  print(reactants)
+  #print(reactants)
   products = reactionlist[1].split("+")
-  print(products)
+  #print(products)
   output = []
   for i in range(len(reactants)):
     try: 
@@ -41,14 +41,17 @@ def processreactioninput(reaction):
     output[2] = int(reaction.split(":")[1])
   except:
     pass
-  print("output--------------------------")
-  print(output)
+  try:
+    output.remove(output[3])
+  except:
+    pass
+  #print("output--------------------------")
+  #print(output)
   return output
 
 
 for i in range(int(input("How many reactions: "))):
-  reactions.append([])
-  reactions[i].append(processreactioninput(input("Input reaction " + str(i+1) + ":")))
+  reactions.append(processreactioninput(input("Input reaction " + str(i+1) + ": ")))
 
 print(reactions)
 targetreaction = processreactioninput(input("Target Reaction: "))
