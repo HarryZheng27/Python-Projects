@@ -9,7 +9,7 @@ endingproducts = targetproducts
 reaction1 = [["A"],["B","B"],57.9]
 reaction2 = [["C","C","D"],["B","B"],-113.1]
 
-
+reactions = [[["A"],["B","B"],57.9],[["C","C","D"],["B","B"],-113.1]]
 
 totalenthalpy =0
 
