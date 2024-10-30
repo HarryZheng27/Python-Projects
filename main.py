@@ -38,7 +38,7 @@ def processreactioninput(reaction):
     for j in range(coefficient):
       output[1].append(products[i])
   try:
-    output[2] = int(reaction.split(":")[1])
+    output[2] = float(reaction.split(":")[1])
   except:
     pass
   try:
@@ -80,7 +80,7 @@ for l in range(500):
     break
   reactionsused = [False,False,False,False,False]
   for reaction in range(len(reactions)):
-    print(reaction)
+    #print(reaction)
     try:
       for j in range(len(reactions[reaction][0])):
         
