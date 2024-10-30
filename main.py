@@ -59,8 +59,8 @@ for i in range(int(input("How many reactions: "))):
 targetreaction = processreactioninput(input("Target Reaction: "))
 targetreactants = targetreaction[0]
 targetproducts = targetreaction[1]
-finalreactants = targetreaction[0]
-finalproducts = targetreaction[1]
+finalreactants = targetreactants
+finalproducts = targetproducts
 
 endingreactants = targetreactants
 endingproducts = targetproducts
@@ -71,7 +71,8 @@ totalenthalpy =0
 reactionamount = 2
 i=0
 for multiple in range(10):
-  for l in range(100):
+  for l in range(1000):
+    done = False
     j=0
     if i>=len(targetreactants):
       i = 0
@@ -82,7 +83,9 @@ for multiple in range(10):
       #print(x)
       x=x[0]
     except:
+      done = True
       break
+      
     reactionsused = [False,False,False,False,False]
     reaction = random.randint(0,len(reactions)-1)
       #print(reaction)
@@ -129,10 +132,13 @@ for multiple in range(10):
                 endingproducts.append(reactions[reaction][1][k])
       except:
         pass
-
     i+=1
-  finalreactants.append(targetreactants)
-  finalproducts.append(targetproducts)
+  if done:
+    break
+  for i in range(len(targetreactants)):
+    finalreactants.append(targetreactants[i])
+  for i in range(len(targetproducts)):
+    finalproducts.append(targetproducts[i])
   endingreactants=finalreactants
   endingproducts=finalproducts
 
