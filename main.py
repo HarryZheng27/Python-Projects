@@ -55,13 +55,13 @@ def processreactioninput(reaction):
 for i in range(int(input("How many reactions: "))):
   reactions.append(processreactioninput(input("Input reaction " + str(i+1) + ": ")))
 
-print(reactions)
+
 targetreaction = processreactioninput(input("Target Reaction: "))
 targetreactants = targetreaction[0]
 targetproducts = targetreaction[1]
 finalreactants = targetreaction[0]
 finalproducts = targetreaction[1]
-print(targetreaction)
+
 endingreactants = targetreactants
 endingproducts = targetproducts
 
@@ -129,11 +129,7 @@ for multiple in range(10):
                 endingproducts.append(reactions[reaction][1][k])
       except:
         pass
-    print()
-    print(endingreactants)
-    print(endingproducts)
-    
-    print()
+
     i+=1
   finalreactants.append(targetreactants)
   finalproducts.append(targetproducts)
