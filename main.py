@@ -1,3 +1,5 @@
+import random
+
 reactions = []
 
 def processreactioninput(reaction):
@@ -79,51 +81,51 @@ for l in range(500):
   except:
     break
   reactionsused = [False,False,False,False,False]
-  for reaction in range(len(reactions)):
+  reaction = random.randint(0,len(reactions)-1)
     #print(reaction)
+  try:
+    for j in range(len(reactions[reaction][0])):
+      
+      if reactions[reaction][0][j] == endingreactants[i]:
+        k=0
+        totalenthalpy += reactions[reaction][2]
+        reactionsused[reaction] = True
+        for k in range(len(reactions[reaction][0])):
+          try:
+            endingreactants.remove(reactions[reaction][0][k])
+
+          except:
+            endingproducts.append(reactions[reaction][0][k])
+        k=0
+        for k in range(len(reactions[reaction][1])):
+          try:
+            endingproducts.remove(reactions[reaction][1][k])
+          except:
+            endingreactants.append(reactions[reaction][1][k])
+  except:
+    pass
+  if reactionsused[reaction] == False:
     try:
-      for j in range(len(reactions[reaction][0])):
-        
-        if reactions[reaction][0][j] == endingreactants[i]:
+      for j in range(len(reactions[reaction][1])):
+        if reactions[reaction][1][j] == endingreactants[i]:
           k=0
-          totalenthalpy += reactions[reaction][2]
-          reactionsused[reaction] = True
+          totalenthalpy -= reactions[reaction][2]
           for k in range(len(reactions[reaction][0])):
+
             try:
-              endingreactants.remove(reactions[reaction][0][k])
+              endingproducts.remove(reactions[reaction][0][k])
 
             except:
-              endingproducts.append(reactions[reaction][0][k])
+              endingreactants.append(reactions[reaction][0][k])
+
           k=0
           for k in range(len(reactions[reaction][1])):
             try:
-              endingproducts.remove(reactions[reaction][1][k])
+              endingreactants.remove(reactions[reaction][1][k])
             except:
-              endingreactants.append(reactions[reaction][1][k])
+              endingproducts.append(reactions[reaction][1][k])
     except:
       pass
-    if reactionsused[reaction] == False:
-      try:
-        for j in range(len(reactions[reaction][1])):
-          if reactions[reaction][1][j] == endingreactants[i]:
-            k=0
-            totalenthalpy -= reactions[reaction][2]
-            for k in range(len(reactions[reaction][0])):
-
-              try:
-                endingproducts.remove(reactions[reaction][0][k])
-
-              except:
-                endingreactants.append(reactions[reaction][0][k])
-
-            k=0
-            for k in range(len(reactions[reaction][1])):
-              try:
-                endingreactants.remove(reactions[reaction][1][k])
-              except:
-                endingproducts.append(reactions[reaction][1][k])
-      except:
-        pass
   print()
   print(endingreactants)
   print(endingproducts)
