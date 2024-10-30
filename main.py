@@ -59,7 +59,9 @@ print(reactions)
 targetreaction = processreactioninput(input("Target Reaction: "))
 targetreactants = targetreaction[0]
 targetproducts = targetreaction[1]
-
+finalreactants = targetreaction[0]
+finalproducts = targetreaction[1]
+print(targetreaction)
 endingreactants = targetreactants
 endingproducts = targetproducts
 
@@ -68,72 +70,77 @@ totalenthalpy =0
 
 reactionamount = 2
 i=0
-for l in range(500):
-  j=0
-  if i>=len(targetreactants):
-    i = 0
-  elif i>=len(targetproducts):
-    i = 0
-  try:
-    x=endingreactants+endingproducts
-    #print(x)
-    x=x[0]
-  except:
-    break
-  reactionsused = [False,False,False,False,False]
-  reaction = random.randint(0,len(reactions)-1)
-    #print(reaction)
-  try:
-    for j in range(len(reactions[reaction][0])):
-      
-      if reactions[reaction][0][j] == endingreactants[i]:
-        k=0
-        totalenthalpy += reactions[reaction][2]
-        reactionsused[reaction] = True
-        for k in range(len(reactions[reaction][0])):
-          try:
-            endingreactants.remove(reactions[reaction][0][k])
-
-          except:
-            endingproducts.append(reactions[reaction][0][k])
-        k=0
-        for k in range(len(reactions[reaction][1])):
-          try:
-            endingproducts.remove(reactions[reaction][1][k])
-          except:
-            endingreactants.append(reactions[reaction][1][k])
-  except:
-    pass
-  if reactionsused[reaction] == False:
+for multiple in range(10):
+  for l in range(100):
+    j=0
+    if i>=len(targetreactants):
+      i = 0
+    elif i>=len(targetproducts):
+      i = 0
     try:
-      for j in range(len(reactions[reaction][1])):
-        if reactions[reaction][1][j] == endingreactants[i]:
+      x=endingreactants+endingproducts
+      #print(x)
+      x=x[0]
+    except:
+      break
+    reactionsused = [False,False,False,False,False]
+    reaction = random.randint(0,len(reactions)-1)
+      #print(reaction)
+    try:
+      for j in range(len(reactions[reaction][0])):
+        
+        if reactions[reaction][0][j] == endingreactants[i]:
           k=0
-          totalenthalpy -= reactions[reaction][2]
+          totalenthalpy += reactions[reaction][2]
+          reactionsused[reaction] = True
           for k in range(len(reactions[reaction][0])):
-
             try:
-              endingproducts.remove(reactions[reaction][0][k])
+              endingreactants.remove(reactions[reaction][0][k])
 
             except:
-              endingreactants.append(reactions[reaction][0][k])
-
+              endingproducts.append(reactions[reaction][0][k])
           k=0
           for k in range(len(reactions[reaction][1])):
             try:
-              endingreactants.remove(reactions[reaction][1][k])
+              endingproducts.remove(reactions[reaction][1][k])
             except:
-              endingproducts.append(reactions[reaction][1][k])
+              endingreactants.append(reactions[reaction][1][k])
     except:
       pass
-  print()
-  print(endingreactants)
-  print(endingproducts)
-  
-  print()
-  i+=1
+    if reactionsused[reaction] == False:
+      try:
+        for j in range(len(reactions[reaction][1])):
+          if reactions[reaction][1][j] == endingreactants[i]:
+            k=0
+            totalenthalpy -= reactions[reaction][2]
+            for k in range(len(reactions[reaction][0])):
+
+              try:
+                endingproducts.remove(reactions[reaction][0][k])
+
+              except:
+                endingreactants.append(reactions[reaction][0][k])
+
+            k=0
+            for k in range(len(reactions[reaction][1])):
+              try:
+                endingreactants.remove(reactions[reaction][1][k])
+              except:
+                endingproducts.append(reactions[reaction][1][k])
+      except:
+        pass
+    print()
+    print(endingreactants)
+    print(endingproducts)
+    
+    print()
+    i+=1
+  finalreactants.append(targetreactants)
+  finalproducts.append(targetproducts)
+  endingreactants=finalreactants
+  endingproducts=finalproducts
 
 print(endingreactants)
 print(endingproducts)
 print("enthalpy change---------------------------------------")
-print(totalenthalpy)
+print(totalenthalpy/multiple)
